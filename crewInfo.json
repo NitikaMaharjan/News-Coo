@@ -1,0 +1,62 @@
+[
+  { 
+    "id": "1",
+    "name": "Monkey D. Luffy",
+    "image": "https://static.wikia.nocookie.net/onepiece/images/6/6d/Monkey_D._Luffy_Anime_Post_Timeskip_Infobox.png",
+    "origin": "East Blue (Goa Kingdom)"
+  },
+  {
+    "id": "2",
+    "name": "Roronoa Zoro",
+    "image": "https://static.wikia.nocookie.net/onepiece/images/5/52/Roronoa_Zoro_Anime_Post_Timeskip_Infobox.png",
+    "origin": "East Blue"
+  },
+  {
+    "id": "3",
+    "name": "Nami",
+    "image": "https://static.wikia.nocookie.net/onepiece/images/6/68/Nami_Anime_Post_Timeskip_Infobox.png",
+    "origin": "East Blue (Conomi Islands)"
+  },
+  {
+    "id": "4",
+    "name": "Usopp",
+    "image": "https://static.wikia.nocookie.net/onepiece/images/3/35/Usopp_Anime_Post_Timeskip_Infobox.png",
+    "origin": "East Blue (Gecko Islands)"
+  },
+  {
+    "id": "5",
+    "name": "Sanji",
+    "image": "https://static.wikia.nocookie.net/onepiece/images/b/b6/Sanji_Anime_Post_Timeskip_Infobox.png",
+    "origin": "North Blue"
+  },
+  {
+    "id": "6",
+    "name": "Tony Tony Chopper",
+    "image": "https://static.wikia.nocookie.net/onepiece/images/a/af/Tony_Tony_Chopper_Anime_Post_Timeskip_Infobox.png",
+    "origin": "Grand Line (Drum Island)"
+  },
+  {
+    "id": "7",
+    "name": "Nico Robin",
+    "image": "https://static.wikia.nocookie.net/onepiece/images/b/bc/Nico_Robin_Anime_Post_Timeskip_Infobox.png",
+    "origin": "West Blue"
+  },
+  {
+    "id": "8",
+    "name": "Franky",
+    "image": "https://static.wikia.nocookie.net/onepiece/images/8/8c/Franky_Anime_Post_Timeskip_Infobox.png",
+    "origin": "South Blue"
+  },
+  {
+    "id": "9",
+    "name": "Brook",
+    "image": "https://static.wikia.nocookie.net/onepiece/images/4/41/Brook_Anime_Post_Timeskip_Infobox.png",
+    "origin": "West Blue"
+  },
+  {
+    "id": "10",
+    "name": "Jinbe",
+    "image": "https://static.wikia.nocookie.net/onepiece/images/8/81/Jinbe_Anime_Infobox.png",
+    "origin": "Grand Line (Fish-Man Island)"
+  }
+]

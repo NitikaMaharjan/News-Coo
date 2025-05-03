@@ -1,0 +1,30 @@
+{
+  characters(filter: { search: "Straw Hat Pirates" }) {
+    info {
+      count
+      pages
+      next
+      prev
+    }
+    results {
+      name
+      image
+      origin
+      description
+      occupations
+      affiliations
+      birthday
+      bloodType
+      bounty
+      devilFruits {
+        description
+        image
+        name
+        types {
+          subType
+          type
+        }
+      }
+    }
+  }
+}
