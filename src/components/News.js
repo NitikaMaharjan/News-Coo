@@ -68,45 +68,43 @@ export class News extends Component {
   constructor(){
     super();
     this.state ={
-      type: "fruits",
-      url: "https://api.api-onepiece.com/v2/fruits/en",
       Info : []
     }
   }
 
-  handleChange = async() =>{
-    if (this.state.type=="fruits"){
-      this.setState({type: "characters", url: null, Info: this.crewInfo})
+  fetchData = async() => {
+    if (this.props.selectedType==="characters"){
+      this.setState({Info: this.crewInfo});
     }else{
-      let new_url = "https://api.api-onepiece.com/v2/fruits/en";
-      let data = await fetch(new_url);
+      let url = "https://api.api-onepiece.com/v2/fruits/en";
+      let data = await fetch(url);
       let parsedData = await data.json();
       let filteredData = parsedData.filter(item =>
         item.filename && item.filename.endsWith('.png')
       );
-      this.setState({type: "fruits", url: new_url, Info: filteredData})
+      this.setState({Info: filteredData});
     }
   }
 
-  async componentDidMount(){
-    let data = await fetch(this.state.url);
-    let parsedData = await data.json();
-    let filteredData = parsedData.filter(item =>
-      item.filename && item.filename.endsWith('.png')
-    );
-    this.setState({Info: filteredData});
+  componentDidMount(){
+    this.fetchData();
+  }
+
+  componentDidUpdate(prevProps){
+    if (prevProps.selectedType!=this.props.selectedType){
+      this.fetchData();
+    }
   }
 
   render() {
     return (
       <>
-        <h1 className="my-3" style={{textAlign:"center"}}>{this.state.type=="fruits"? "Devil Fruits" : "Characters"}</h1>
-        <button onClick={this.handleChange}>Change</button>
+        <h1 className="my-3" style={{textAlign:"center"}}>{this.props.selectedType==="characters"? "Characters" : "Devil Fruits"}</h1>
         <div className='container my-3'>
           <div className="row">
             {this.state.Info.map((element)=>{
               return <div className="col-sm-4" key={element.id}>
-                        <NewsItem imageUrl={this.state.type=="fruits"? element.filename: element.image} name={element.name} type={this.state.type=="fruits"? element.type: element.origin} imageStyle={this.state.type=="fruits"?{height: '160px', width: '140px', objectFit: 'fit'}:{height: '180px', objectFit: 'cover', objectPosition: 'center top'}}/>
+                        <NewsItem imageUrl={this.props.selectedType==="characters"? element.image : element.filename} name={element.name} type={this.props.selectedType==="characters"? element.origin : element.type} imageStyle={this.props.selectedType==="characters"?{height: '180px', objectFit: 'cover', objectPosition: 'center top'} : {height: '160px', width: '140px', objectFit: 'fit'}}/>
                       </div>
             })}
           </div>
