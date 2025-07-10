@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 
 export class News extends Component {
-  crewInfo = [
+  crewInfo=[
     { 
       "id": "1",
       "name": "Monkey D. Luffy",
@@ -64,21 +64,49 @@ export class News extends Component {
       "origin": "Grand Line (Fish-Man Island)"
     }
   ]
+
   constructor(){
     super();
     this.state ={
-      crewInfo : this.crewInfo
+      type: "fruits",
+      url: "https://api.api-onepiece.com/v2/fruits/en",
+      Info : []
     }
   }
+
+  handleChange = async() =>{
+    if (this.state.type=="fruits"){
+      this.setState({type: "characters", url: null, Info: this.crewInfo})
+    }else{
+      let new_url = "https://api.api-onepiece.com/v2/fruits/en";
+      let data = await fetch(new_url);
+      let parsedData = await data.json();
+      let filteredData = parsedData.filter(item =>
+        item.filename && item.filename.endsWith('.png')
+      );
+      this.setState({type: "fruits", url: new_url, Info: filteredData})
+    }
+  }
+
+  async componentDidMount(){
+    let data = await fetch(this.state.url);
+    let parsedData = await data.json();
+    let filteredData = parsedData.filter(item =>
+      item.filename && item.filename.endsWith('.png')
+    );
+    this.setState({Info: filteredData});
+  }
+
   render() {
     return (
       <>
-        <h1 style={{textAlign:"center"}}>News Coo - Straw Hat Crew</h1>
-        <div className='container my-4'>
+        <h1 className="my-3" style={{textAlign:"center"}}>{this.state.type=="fruits"? "Devil Fruits" : "Characters"}</h1>
+        <button onClick={this.handleChange}>Change</button>
+        <div className='container my-3'>
           <div className="row">
-            {this.state.crewInfo.map((element)=>{
+            {this.state.Info.map((element)=>{
               return <div className="col-sm-4" key={element.id}>
-                        <NewsItem imageUrl={element.image} name={element.name} origin={element.origin} />
+                        <NewsItem imageUrl={this.state.type=="fruits"? element.filename: element.image} name={element.name} type={this.state.type=="fruits"? element.type: element.origin} imageStyle={this.state.type=="fruits"?{height: '160px', width: '140px', objectFit: 'fit'}:{height: '180px', objectFit: 'cover', objectPosition: 'center top'}}/>
                       </div>
             })}
           </div>
