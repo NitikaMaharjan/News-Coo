@@ -68,13 +68,14 @@ export class News extends Component {
   constructor(){
     super();
     this.state ={
-      Info : []
+      Info : [],
+      loading: false
     }
   }
 
   fetchData = async() => {
     if (this.props.selectedType==="characters"){
-      this.setState({Info: this.crewInfo});
+      this.setState({Info: this.crewInfo, loading: true});
     }else{
       let url = "https://api.api-onepiece.com/v2/fruits/en";
       let data = await fetch(url);
@@ -82,16 +83,18 @@ export class News extends Component {
       let filteredData = parsedData.filter(item =>
         item.filename && item.filename.endsWith('.png')
       );
-      this.setState({Info: filteredData});
+      this.setState({Info: filteredData, loading: true});
     }
   }
 
   componentDidMount(){
+    this.setState({Info: [], loading: false})
     this.fetchData();
   }
 
   componentDidUpdate(prevProps){
     if (prevProps.selectedType!=this.props.selectedType){
+      this.setState({Info: [], loading: false})
       this.fetchData();
     }
   }
@@ -100,15 +103,22 @@ export class News extends Component {
     return (
       <>
         <h1 className="my-3" style={{textAlign:"center"}}>{this.props.selectedType==="characters"? "Characters" : "Devil Fruits"}</h1>
-        <div className='container my-3'>
-          <div className="row">
-            {this.state.Info.map((element)=>{
-              return <div className="col-sm-4" key={element.id}>
-                        <NewsItem imageUrl={this.props.selectedType==="characters"? element.image : element.filename} name={element.name} type={this.props.selectedType==="characters"? element.origin : element.type} imageStyle={this.props.selectedType==="characters"?{height: '180px', objectFit: 'cover', objectPosition: 'center top'} : {height: '160px', width: '140px', objectFit: 'fit'}}/>
-                      </div>
-            })}
+        
+        {this.state.loading? 
+          <div className='container my-3'>
+            <div className="row">
+              {this.state.Info.map((element)=>{
+                return  <div className="col-sm-4 d-flex justify-content-center" key={element.id}>
+                          <NewsItem imageUrl={this.props.selectedType==="characters"? element.image : element.filename} name={element.name} type={this.props.selectedType==="characters"? element.origin : element.type} imageStyle={this.props.selectedType==="characters"?{height: '180px', objectFit: 'cover', objectPosition: 'center top'} : {height: '160px', width: '140px', objectFit: 'fit'}}/>
+                        </div>
+              })}
+            </div>
           </div>
-        </div>
+        :
+          <div className='text-center' style={{marginTop: "132px"}}>
+            <img src="/images/loading.gif" style={{height: "24px", width:"24px"}}/>
+          </div>
+        }
       </>
     )
   }

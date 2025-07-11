@@ -2,6 +2,7 @@ import './App.css';
 
 import React, { Component } from 'react';
 import Navbar from './components/Navbar';
+import HomeFeed from './components/HomeFeed';
 import News from './components/News';
 
 export default class App extends Component {
@@ -9,7 +10,7 @@ export default class App extends Component {
   constructor(){
     super();
     this.state={
-      selectedType: "characters"
+      selectedType: "homefeed"
     };
   }
 
@@ -21,7 +22,7 @@ export default class App extends Component {
     return (
       <div>
         <Navbar toHandleTypeChange={this.handleTypeChange}/>
-        <News selectedType={this.state.selectedType}/>
+        {this.state.selectedType==="homefeed"?<HomeFeed/>:<News selectedType={this.state.selectedType}/>}
       </div>
     )
   }

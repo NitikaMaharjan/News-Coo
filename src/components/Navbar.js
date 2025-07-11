@@ -6,8 +6,8 @@ export class Navbar extends Component {
       <div>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
-                <img src="logo.jpg" style={{height: "38px"}} className="mx-3"/>
-                <a className="navbar-brand" href="/">News Coo</a>
+                <img src="/images/logo.jpg" style={{height: "34px", borderRadius: "50%", cursor: "pointer"}} onClick={()=>this.props.toHandleTypeChange("homefeed")} className="mx-2"/>
+                <a className="navbar-brand" style={{cursor: "pointer", fontWeight: "500"}} onClick={()=>this.props.toHandleTypeChange("homefeed")}>News Coo</a>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
