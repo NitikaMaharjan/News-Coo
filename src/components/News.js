@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
+import Throbber from './Throbber';
 
 export class News extends Component {
   crewInfo=[
@@ -65,58 +66,79 @@ export class News extends Component {
     }
   ]
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state ={
       Info : [],
-      loading: false
+      loading: true
     }
   }
 
-  fetchData = async() => {
-    if (this.props.selectedType==="characters"){
-      this.setState({Info: this.crewInfo, loading: true});
-    }else{
-      let url = "https://api.api-onepiece.com/v2/fruits/en";
-      let data = await fetch(url);
-      let parsedData = await data.json();
-      let filteredData = parsedData.filter(item =>
-        item.filename && item.filename.endsWith('.png')
-      );
-      this.setState({Info: filteredData, loading: true});
-    }
+  wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+  fetchCharacters = async() => {
+    await this.wait(300);
+    this.props.setProgress(50);
+    await this.wait(300);
+    this.setState({Info: this.crewInfo, loading: false});
+    this.props.setProgress(100);
+  }
+
+  fetchDevilFruits = async() => {
+    this.props.setProgress(30);
+    let url = "https://api.api-onepiece.com/v2/fruits/en";
+    this.props.setProgress(50);
+    let data = await fetch(url);
+    let parsedData = await data.json();
+    let filteredData = parsedData.filter(item =>
+      item.filename && item.filename.endsWith('.png')
+    );
+    this.props.setProgress(70);
+    this.setState({Info: filteredData, loading: false});
+    this.props.setProgress(100);
   }
 
   componentDidMount(){
-    this.setState({Info: [], loading: false})
-    this.fetchData();
+    document.title= this.props.selectedType;
+    this.props.setProgress(10);
+    if (this.props.selectedType==="Characters"){
+      this.fetchCharacters();
+    }else{
+      this.fetchDevilFruits();
+    }
   }
 
   componentDidUpdate(prevProps){
-    if (prevProps.selectedType!=this.props.selectedType){
-      this.setState({Info: [], loading: false})
-      this.fetchData();
+    if(prevProps.selectedType!==this.props.selectedType){
+      document.title= this.props.selectedType;
+      this.props.setProgress(10); 
+      this.setState({Info: [], loading: true})     
+      if (this.props.selectedType==="Characters"){
+        this.fetchCharacters();
+      }else{
+        this.fetchDevilFruits();
+      }
     }
   }
 
   render() {
     return (
       <>
-        <h1 className="my-3" style={{textAlign:"center"}}>{this.props.selectedType==="characters"? "Characters" : "Devil Fruits"}</h1>
+        <h1 className="my-3" style={{textAlign:"center"}}>{this.props.selectedType==="Characters"? "Characters" : "Devil Fruits"}</h1>
         
         {this.state.loading? 
+          <div className='text-center' style={{marginTop: "132px"}}>
+            <Throbber/>
+          </div>
+        :
           <div className='container my-3'>
             <div className="row">
               {this.state.Info.map((element)=>{
                 return  <div className="col-sm-4 d-flex justify-content-center" key={element.id}>
-                          <NewsItem imageUrl={this.props.selectedType==="characters"? element.image : element.filename} name={element.name} type={this.props.selectedType==="characters"? element.origin : element.type} imageStyle={this.props.selectedType==="characters"?{height: '180px', objectFit: 'cover', objectPosition: 'center top'} : {height: '160px', width: '140px', objectFit: 'fit'}}/>
+                          <NewsItem imageUrl={this.props.selectedType==="Characters"? element.image : element.filename} name={element.name} type={this.props.selectedType==="Characters"? element.origin : element.type} imageStyle={this.props.selectedType==="Characters"?{height: '180px', objectFit: 'cover', objectPosition: 'center top'} : {height: '160px', width: '140px', objectFit: 'fit'}}/>
                         </div>
               })}
             </div>
-          </div>
-        :
-          <div className='text-center' style={{marginTop: "132px"}}>
-            <img src="/images/loading.gif" style={{height: "24px", width:"24px"}}/>
           </div>
         }
       </>
