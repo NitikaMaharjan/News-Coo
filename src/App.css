@@ -1,0 +1,28 @@
+.animation-circle{
+    clip-path: circle(0% at 50% 50%);
+    transition: clip-path 3s ease-in-out;
+    overflow: hidden;
+}
+
+.animation-circle.animate{
+    clip-path: circle(150% at 50% 50%);
+}
+
+.up-arr{
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    padding: 6px 16px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    border-radius: 50%;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.up-arr.scroll{
+    opacity: 1;
+}

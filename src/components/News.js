@@ -68,6 +68,7 @@ const News = (props) => {
 
   const [info, setInfo] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [scroll, setScroll] = useState(false);
 
   const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -83,16 +84,15 @@ const News = (props) => {
   const fetchDevilFruits = async() => {
     props.updateProgress(30);
     let url = "https://api.api-onepiece.com/v2/fruits/en";
-    props.updateProgress(50);
+    props.updateProgress(70);
     let data = await fetch(url);
     let parsedData = await data.json();
     let filteredData = parsedData.filter(item =>
       item.filename && item.filename.endsWith('.png')
     );
-    props.updateProgress(70);
+    props.updateProgress(100);
     setInfo(filteredData);
     setLoading(false);
-    props.updateProgress(100);
   }
 
   useEffect(() => {
@@ -105,11 +105,19 @@ const News = (props) => {
     }else{
       fetchDevilFruits();
     }
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY){
+        setScroll(true);
+      }else{
+        setScroll(false);
+      }
+    });
   }, [props.selectedType]); // runs everytime selectedType changes
 
   return (
     <>
-      <h1 className="my-3" style={{textAlign:"center"}}>{props.selectedType==="Characters"? "Characters" : "Devil Fruits"}</h1>
+      <h1 id="top" style={{textAlign:"center", paddingTop: "80px"}}>{props.selectedType==="Characters"? "Characters" : "Devil Fruits"}</h1>
       
       {loading? 
         <div className='text-center' style={{marginTop: "132px"}}>
@@ -126,6 +134,8 @@ const News = (props) => {
           </div>
         </div>
       }
+      
+      <a className={`up-arr ${scroll?'scroll':''}`} href="#top">&uarr;</a>
     </>
   )
 }
