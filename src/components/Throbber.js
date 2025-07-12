@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export class Throbber extends Component {
-  render() {
-    return (
-      <div>
-        <img src="/images/loading.gif" style={{height: "24px", width:"24px"}} alt="loading"/>
-      </div>
-    )
-  }
+const Throbber = () => {
+  return (
+    <div>
+      <img src="/images/loading.gif" style={{height: "24px", width:"24px"}} alt="loading"/>
+    </div>
+  )
 }
 
 export default Throbber

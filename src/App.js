@@ -1,36 +1,30 @@
-import './App.css';
-
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import LoadingBar from "react-top-loading-bar";
 import { BrowserRouter, Routes, Route } from "react-router";
 import Navbar from './components/Navbar';
 import HomeFeed from './components/HomeFeed';
 import News from './components/News';
+import './App.css';
 
-export default class App extends Component {
+const App = () => {
 
-  constructor(){
-    super();
-    this.state={
-      progress: 0
-    }
+  const [progress, setProgress] = useState(0);
+
+  const updateProgress = (new_progress) => {
+    setProgress(new_progress);
   }
 
-  setProgress = (new_progress) => {
-    this.setState({progress: new_progress});
-  }
-
-  render() {
-    return (
-      <BrowserRouter>
-        <LoadingBar color="#245691" progress={this.state.progress}/>
-        <Navbar/>
-        <Routes>
-          <Route path='/' element={<HomeFeed setProgress={this.setProgress}/>}/>
-          <Route path='/characters' element={<News setProgress={this.setProgress} selectedType="Characters"/>}/>
-          <Route path='/devil-fruits' element={<News setProgress={this.setProgress} selectedType="Devil Fruits"/>}/>
-        </Routes>
-      </BrowserRouter>
-    )
-  }
+  return (
+    <BrowserRouter>
+      <LoadingBar color="#245691" progress={progress}/>
+      <Navbar/>
+      <Routes>
+        <Route path='/' element={<HomeFeed updateProgress={updateProgress}/>}/>
+        <Route path='/characters' element={<News updateProgress={updateProgress} selectedType="Characters"/>}/>
+        <Route path='/devil-fruits' element={<News updateProgress={updateProgress} selectedType="Devil Fruits"/>}/>
+      </Routes>
+    </BrowserRouter>
+  )
 }
+
+export default App
