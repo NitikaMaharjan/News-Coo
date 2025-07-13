@@ -31,7 +31,7 @@ const HomeFeed = (props) => {
   return (
     <div className={`animation-circle ${animation?'animate':''}`}>
       <div className="text-center" style={{marginTop: "60px"}}>
-        <img src="/images/img1.png" style={{height: "400px"}} alt="one piece"/>
+        <img src="/images/home-feed-img.png" style={{height: "400px"}} alt="one piece"/>
         <h5 className="m-0 p-0">News Coo delivers news related to one piece characters and devil fruits.</h5>
       </div>
     </div>
