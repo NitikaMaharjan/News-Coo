@@ -6,11 +6,11 @@
 
 > Below are some screenshots of the project:
 
-<img src="public/images/image1.jpg">
+<img src="public/images/image1.JPG">
 
-<img src="public/images/image2.jpg">
+<img src="public/images/image2.JPG">
 
-<img src="public/images/image3.jpg">
+<img src="public/images/image3.JPG">
 
 ## Installation
 
