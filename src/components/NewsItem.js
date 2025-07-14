@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
 const NewsItem = (props) => {
-  let {imageUrl, name, type, imageStyle} = props; // destructuring
+  let {imageUrl, name, type, imageStyle, alt} = props; // destructuring
 
   const [finalName, setFinalName] = useState("");
 
@@ -20,13 +20,14 @@ const NewsItem = (props) => {
 
   useEffect(() => {
     checkName();
+    // eslint-disable-next-line
   }, [])
   
   return (
     <div className='my-3'>
       <div className="card" style={{width: '18rem'}}>
         <div className="d-flex justify-content-center">
-          <img src={imageUrl} className="card-img" style={imageStyle}/>
+          <img src={imageUrl} className="card-img" style={imageStyle} alt={alt}/>
         </div>
         <div className="card-body">
           <h5 className="card-title">{finalName}</h5>

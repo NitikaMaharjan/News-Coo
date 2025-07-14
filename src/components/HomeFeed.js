@@ -26,6 +26,8 @@ const HomeFeed = (props) => {
     setTimeout(() => {
       setAnimation(true);
     }, 200); // slight delay to ensure CSS transition
+
+    // eslint-disable-next-line
   }, []);
 
   return (

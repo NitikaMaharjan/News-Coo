@@ -113,6 +113,8 @@ const News = (props) => {
         setScroll(false);
       }
     });
+
+    // eslint-disable-next-line
   }, [props.selectedType]); // runs everytime selectedType changes
 
   return (
@@ -128,7 +130,8 @@ const News = (props) => {
           <div className="row">
             {info.map((element)=>{
               return  <div className="col-sm-4 d-flex justify-content-center" key={element.id}>
-                        <NewsItem imageUrl={props.selectedType==="Characters"? element.image : element.filename} name={element.name} type={props.selectedType==="Characters"? element.origin : element.type} imageStyle={props.selectedType==="Characters"?{height: '180px', objectFit: 'cover', objectPosition: 'center top'} : {height: '160px', width: '140px', objectFit: 'fit'}}/>
+                        <NewsItem imageUrl={props.selectedType==="Characters"? element.image : element.filename} name={element.name} type={props.selectedType==="Characters"? element.origin : element.type} imageStyle={props.selectedType==="Characters"?{height: '180px', objectFit: 'cover', objectPosition: 'center top'} : {height: '160px', width: '140px', objectFit: 'fit'}}
+                        alt={props.selectedType==="Characters"?"character image":"devil fruit image"}/>
                       </div>
             })}
           </div>

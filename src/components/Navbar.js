@@ -6,7 +6,7 @@ const Navbar = () => {
     <div>
       <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">                
-              <img src="/images/logo.jpg" style={{height: "34px", borderRadius: "50%"}}  className="mx-2"/>
+              <img src="/images/logo.jpg" style={{height: "34px", borderRadius: "50%"}}  className="mx-2" alt="news coo logo"/>
               <a className="navbar-brand" style={{cursor: "pointer", fontWeight: "500"}} href="/">
                 News Coo
               </a>
