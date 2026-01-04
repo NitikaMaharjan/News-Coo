@@ -62,6 +62,7 @@ This project was created while following the **React JS tutorials by [CodeWithHa
 
 ## Contact Me
 
-Created by [Nitika Maharjan](https://github.com/NitikaMaharjan)
+Created by [Nitika Maharjan](https://github.com/NitikaMaharjan)  
+Email: [maharjanitika@gmail.com](https://mail.google.com/mail/?view=cm&fs=1&to=maharjanitika@gmail.com) 
 
-Feel free to connect with me on GitHub or reach out for collaboration!
+Feel free to connect on GitHub or reach out via email for collaboration!
