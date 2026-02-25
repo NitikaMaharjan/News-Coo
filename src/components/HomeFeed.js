@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const HomeFeed = (props) => {
 
@@ -31,11 +31,9 @@ const HomeFeed = (props) => {
   }, []);
 
   return (
-    <div className={`animation-circle ${animation?'animate':''}`}>
-      <div className="text-center" style={{marginTop: "60px"}}>
-        <img src="/images/home-feed-img.png" style={{height: "400px"}} alt="one piece"/>
-        <h5 className="m-0 p-0">News Coo delivers news related to one piece characters and devil fruits.</h5>
-      </div>
+    <div className={`d-flex flex-column justify-content-center align-items-center min-vh-100 animation-circle ${animation?'animate':''}`} style={{padding: "40px"}}>
+      <img className="img-fluid" src="/images/home-feed-img.png" alt="one piece"/>
+      <h5 className="m-0 p-0 text-center fs-6 fs-md-5 fs-lg-4">News Coo delivers news related to one piece characters and devil fruits.</h5>
     </div>
   )
 }

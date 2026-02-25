@@ -10,9 +10,9 @@
 
 .up-arr{
     position: fixed;
-    bottom: 40px;
-    right: 40px;
-    padding: 6px 16px;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 6px 17px;
     cursor: pointer;
     background-color: black;
     color: white;

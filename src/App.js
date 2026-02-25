@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import LoadingBar from "react-top-loading-bar";
 import { BrowserRouter, Routes, Route } from "react-router";
 import Navbar from './components/Navbar';

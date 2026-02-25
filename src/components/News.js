@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import NewsItem from './NewsItem';
 import Throbber from './Throbber';
 
@@ -129,7 +129,7 @@ const News = (props) => {
         <div className='container my-3'>
           <div className="row">
             {info.map((element)=>{
-              return  <div className="col-sm-4 d-flex justify-content-center" key={element.id}>
+              return  <div className="col-12 col-md-6 col-lg-4 d-flex justify-content-center" key={element.id}>
                         <NewsItem imageUrl={props.selectedType==="Characters"? element.image : element.filename} name={element.name} type={props.selectedType==="Characters"? element.origin : element.type} imageStyle={props.selectedType==="Characters"?{height: '180px', objectFit: 'cover', objectPosition: 'center top'} : {height: '160px', width: '140px', objectFit: 'fit'}}
                         alt={props.selectedType==="Characters"?"character image":"devil fruit image"}/>
                       </div>
